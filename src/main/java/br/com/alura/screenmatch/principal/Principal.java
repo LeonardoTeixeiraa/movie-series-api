@@ -33,7 +33,8 @@ public class Principal {
             var menu = """
                     1 - Buscar séries
                     2 - Buscar episódios
-                    3- Listar séries buscadas
+                    3 - Listar séries buscadas
+                    4 - Buscar série pelo nome
                     
                     0 - Sair                                 
                     """;
@@ -51,6 +52,9 @@ public class Principal {
                     break;
                 case 3:
                     listarSeriesBuscadas();
+                    break;
+                case 4:
+                    buscarSeriePeloTitulo();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -112,5 +116,15 @@ public class Principal {
         }else {
             System.out.println("Série não encontrada!");
         }
+    }
+        private void buscarSeriePeloTitulo(){
+            System.out.println("Escolha uma série pelo nome: ");
+            var nomeSerie = leitura.nextLine();
+            Optional<Serie> serieBuscada = repository.findByTituloContainingIgnoreCase(nomeSerie);
+            if (serieBuscada.isPresent()){
+                System.out.println("Dados da série: " + serieBuscada.get());
+            }else {
+                System.out.println("Série não encontrada");
+            }
     }
 }
