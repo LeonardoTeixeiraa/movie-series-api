@@ -8,6 +8,4 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
-    format-sql: true
 
