@@ -8,7 +8,7 @@ public record SerieDTO ( Long id,
  Double avaliacao,
  Categoria genero,
  String atores,
- String poster,
- String sinopse){
+ String sinopse,
+ String poster){
 
 }
