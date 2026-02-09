@@ -75,9 +75,6 @@ public class Principal {
                 case 9:
                     buscarEpisodioPorTrecho();
                     break;
-                case 10:
-                    topEpisodiosPorSerie();
-                    break;
                 case 11:
                     buscarEpisodiosDepoisDeUmaData();
                     break;
@@ -197,15 +194,6 @@ public class Principal {
         episodiosEncontrados.forEach(e -> System.out.println("Série: " + e.getSerie().getTitulo()+ " " + e));
     }
 
-    private void topEpisodiosPorSerie(){
-        buscarSeriePeloTitulo();
-        if (serieBusca.isPresent()){
-            Serie serie = serieBusca.get();
-            List<Episodio> topEpisodios = repository.topEpisodiosPorSerie(serie);
-            topEpisodios.forEach(e -> System.out.printf("Série: %s Temporada %s - Episódio %s - %s\n", e.getSerie().getTitulo(),
-                    e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()));
-        }
-    }
 
     private void buscarEpisodiosDepoisDeUmaData(){
         buscarSeriePeloTitulo();

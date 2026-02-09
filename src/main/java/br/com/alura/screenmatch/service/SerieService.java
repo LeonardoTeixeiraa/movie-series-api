@@ -67,4 +67,12 @@ public class SerieService {
         Categoria categoria = Categoria.fromPortugues(genero);
         return converteDados(repository.findByGenero(categoria));
     }
+
+    public List<EpisodioDTO> obterTopEpisodiosPorSerie(Long id){
+        var serie = repository.findById(id).get();
+        return repository.topEpisodiosPorSerie(serie)
+                .stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .toList();
+    }
 }
