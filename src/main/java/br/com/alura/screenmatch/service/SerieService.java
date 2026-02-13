@@ -1,6 +1,8 @@
 package br.com.alura.screenmatch.service;
 
+import br.com.alura.screenmatch.config.OmdbConfig;
 import br.com.alura.screenmatch.dto.EpisodioDTO;
+import br.com.alura.screenmatch.dto.OmdbSerieDTO;
 import br.com.alura.screenmatch.dto.SerieDTO;
 import br.com.alura.screenmatch.model.Categoria;
 import br.com.alura.screenmatch.model.Serie;
@@ -16,6 +18,28 @@ import java.util.stream.Collectors;
 public class SerieService {
     @Autowired
     private SerieRepository repository;
+    @Autowired
+    private ConsumoApi consumoApi;
+    @Autowired
+    private ConverteDados converteDados;
+    @Autowired
+    private ConsultaGemini gemini;
+    @Autowired
+    private OmdbConfig config;
+
+
+    public Serie buscarSerieNaOmdb (String titulo){
+        String url = "https://www.omdbapi.com/?t="
+                + titulo.replace(" ", "+")
+                + "&apikey=" + config.getApikey();
+
+        String json = consumoApi.obterDados(url);
+        OmdbSerieDTO serieDTO = converteDados.obterDados(json, OmdbSerieDTO.class);
+
+        Serie serie = new Serie(serieDTO);
+        return repository.save(serie);
+    }
+
 
     public List<SerieDTO> obterSeries(){
         return converteDados(repository.findAll());
