@@ -40,6 +40,9 @@ public class SerieService {
         return repository.save(serie);
     }
 
+    public List<Serie> listarSeries(){
+       return repository.findAll();
+    }
 
     public List<SerieDTO> obterSeries(){
         return converteDados(repository.findAll());
