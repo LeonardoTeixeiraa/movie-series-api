@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.model;
 
+import br.com.alura.screenmatch.dto.OmdbSerieDTO;
 import br.com.alura.screenmatch.service.ConsultaGemini;
 import jakarta.persistence.*;
 
@@ -47,14 +48,14 @@ public class Serie {
         return id;
     }
 
-    public Serie(DadosSerie dadosSerie){
-        this.titulo = dadosSerie.titulo();
-        this.totalTemporadas = dadosSerie.totalTemporadas();
-        this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0);
-        this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
-        this.atores = dadosSerie.atores();
-        this.poster = dadosSerie.poster();
-        this.sinopse = ConsultaGemini.obterTraducao(dadosSerie.sinopse().trim()) ;
+    public Serie(OmdbSerieDTO omdbSerieDTO){
+        this.titulo = omdbSerieDTO.titulo();
+        this.totalTemporadas = omdbSerieDTO.totalTemporadas();
+        this.avaliacao = OptionalDouble.of(Double.valueOf(omdbSerieDTO.avaliacao())).orElse(0);
+        this.genero = Categoria.fromString(omdbSerieDTO.genero().split(",")[0].trim());
+        this.atores = omdbSerieDTO.atores();
+        this.poster = omdbSerieDTO.poster();
+        this.sinopse = ConsultaGemini.obterTraducao(omdbSerieDTO.sinopse().trim()) ;
     }
 
     public Serie() {
