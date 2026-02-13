@@ -40,8 +40,8 @@ public class SerieService {
         return repository.save(serie);
     }
 
-    public List<Serie> listarSeries(){
-       return repository.findAll();
+    public Optional<Serie> buscarPorTitulo(String titulo) {
+        return repository.findByTituloContainingIgnoreCase(titulo);
     }
 
     public List<SerieDTO> obterSeries(){
