@@ -2,12 +2,11 @@ package br.com.alura.screenmatch.controller;
 
 import br.com.alura.screenmatch.dto.EpisodioDTO;
 import br.com.alura.screenmatch.dto.SerieDTO;
+import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +17,22 @@ public class SerieController {
     @Autowired
     private SerieService service;
 
+    @PostMapping("/buscar")
+    public ResponseEntity<Serie> buscarSerie(@RequestParam String titulo) {
+        Serie serie = service.buscarSerieNaOmdb(titulo);
+        return ResponseEntity.ok(serie);
+    }
+
     @GetMapping
     public List<SerieDTO> obterSeries(){
         return service.obterSeries();
+    }
+
+    @GetMapping("/buscar-por-titulo")
+    public ResponseEntity<Serie> buscarPorTitulo(@RequestParam String titulo){
+        return service.buscarPorTitulo(titulo)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/top5")
