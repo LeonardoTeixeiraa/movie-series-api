@@ -16,17 +16,20 @@ import java.util.stream.Collectors;
 
 @Service
 public class SerieService {
-    @Autowired
-    private SerieRepository repository;
-    @Autowired
-    private ConsumoApi consumoApi;
-    @Autowired
-    private ConverteDados converteDados;
-    @Autowired
-    private ConsultaGemini gemini;
-    @Autowired
-    private OmdbConfig config;
+    private final SerieRepository repository;
+    private final ConsumoApi consumoApi;
+    private final ConverteDados converteDados;
+    private final OmdbConfig config;
 
+    public SerieService(SerieRepository repository,
+                        ConsumoApi consumoApi,
+                        ConverteDados conversor,
+                        OmdbConfig config) {
+        this.repository = repository;
+        this.consumoApi = consumoApi;
+        this.converteDados = conversor;
+        this.config = config;
+    }
 
     public Serie buscarSerieNaOmdb (String titulo){
         String url = "https://www.omdbapi.com/?t="
