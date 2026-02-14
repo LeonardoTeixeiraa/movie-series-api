@@ -2,9 +2,11 @@ package br.com.alura.screenmatch.service;
 
 import br.com.alura.screenmatch.config.OmdbConfig;
 import br.com.alura.screenmatch.dto.EpisodioDTO;
+import br.com.alura.screenmatch.dto.OmdbEpisodioDTO;
 import br.com.alura.screenmatch.dto.OmdbSerieDTO;
 import br.com.alura.screenmatch.dto.SerieDTO;
 import br.com.alura.screenmatch.model.Categoria;
+import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,18 @@ public class SerieService {
 
         Serie serie = new Serie(serieDTO);
         return repository.save(serie);
+    }
+
+    public Episodio buscarEpisodioPorTemporadaOmdb (String titulo, int temporada){
+        String url = "https://www.omdbapi.com/?t="
+                + titulo.replace(" ", "+") +"&Season=" + temporada
+                + "&apikey=" + config.getApikey();
+
+        String json = consumoApi.obterDados(url);
+        OmdbEpisodioDTO episodioDTO = converteDados.obterDados(json, OmdbEpisodioDTO.class);
+
+        Episodio episodio = new Episodio(temporada, episodioDTO);
+        return repository.save(episodio);
     }
 
     public Optional<Serie> buscarPorTitulo(String titulo) {

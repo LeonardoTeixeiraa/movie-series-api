@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.model;
 
+import br.com.alura.screenmatch.dto.OmdbEpisodioDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -41,19 +42,19 @@ public class Episodio {
     @JoinColumn(name = "serie_id")
     private Serie serie;
 
-    public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
+    public Episodio(Integer numeroTemporada, OmdbEpisodioDTO episodioDTO) {
         this.temporada = numeroTemporada;
-        this.titulo = dadosEpisodio.titulo();
-        this.numeroEpisodio = dadosEpisodio.numero();
+        this.titulo = episodioDTO.titulo();
+        this.numeroEpisodio = episodioDTO.numero();
 
         try {
-            this.avaliacao = Double.valueOf(dadosEpisodio.avaliacao());
+            this.avaliacao = Double.valueOf(episodioDTO.avaliacao());
         } catch (NumberFormatException ex) {
             this.avaliacao = 0.0;
         }
 
         try {
-            this.dataLancamento = LocalDate.parse(dadosEpisodio.dataLancamento());
+            this.dataLancamento = LocalDate.parse(episodioDTO.dataLancamento());
         } catch (DateTimeParseException ex) {
             this.dataLancamento = null;
         }
