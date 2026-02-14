@@ -61,8 +61,8 @@ API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em b
    ```
    GEMINI_APIKEY= gere-sua-chave-do-gemini (necessária para fazer a tradução da sinopse das séries)
    DB_USER=user
-   DB_PASSWORD=test
-   DB_NAME=screenmatchData
+   DB_PASSWORD=sua-senha
+   DB_NAME=nome-do-banco
    DB_HOST=localhost
    MYSQL_ROOT_PASSWORD=sua-senha
    OMDB_APIKEY= gere-sua-chave-OMDb
