@@ -1,4 +1,4 @@
-# 🎬 movie-series-api
+# 🎬 Movie Series API
 API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em banco de dados e consultar informações sobre séries e episódios.
 
 ## Tecnologias
@@ -31,12 +31,25 @@ API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em b
 
 ## Endpoints:
 > GET /series - retorna todas as séries cadastradas no banco
+
 > POST /series/buscar - busca uma série na API OMDb
-> GET /series/buscar-por-titulo - busca uma serie no banco pelo parâmetro titulo
+
+> GET /series/buscar-por-titulo?titulo= - buscar uma serie no banco pelo parâmetro titulo
+
 > GET /series/top5 - retorna top 5 séries do banco com base em avaliação
+
 > GET /series/lancamentos - retorna as séries mais atuais
+
 > GET /series/{id} busca uma série pelo ID
-> GET /series/temporadas/todas - retorna todas as temporadas de uma série
+
+> GET /series/{id}/temporadas/todas - retorna todas as temporadas de uma série
+
+> GET /series/categoria/{genero} - retorna séries por gênero
+
+> GET /series/{id}/temporada/top - retorna as melhores temporadas de uma série
+
+>GET /series/{id}/temporadas/{numero} - retorna uma temporada específica
+
 ## Como executar o projeto:
 1. Clonar o repositório:  
    ```
@@ -46,12 +59,12 @@ API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em b
    cd movie-series-api
 3. Crie as variáveis de ambiente necessárias no sistema operacional:
    ```
-   GEMINI_APIKEY= gere-sua-chave-do-gemini
+   GEMINI_APIKEY= gere-sua-chave-do-gemini (necessária para fazer a tradução da sinopse das séries)
    DB_USER=user
    DB_PASSWORD=test
    DB_NAME=screenmatchData
    DB_HOST=localhost
-   MYSQL_ROOT_PASSWORD=rsua-senha
+   MYSQL_ROOT_PASSWORD=sua-senha
    OMDB_APIKEY= gere-sua-chave-OMDb
 
 4. Suba o container docker:
