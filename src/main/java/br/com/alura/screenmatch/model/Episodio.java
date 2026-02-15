@@ -48,8 +48,10 @@ public class Episodio {
         this.numeroEpisodio = episodioDTO.numero();
 
         try {
-            this.avaliacao = Double.valueOf(episodioDTO.avaliacao());
-        } catch (NumberFormatException ex) {
+            this.avaliacao = episodioDTO.avaliacao() != null && !episodioDTO.avaliacao().equals("N/A")
+                    ? Double.valueOf(episodioDTO.avaliacao())
+                    : 0.0;
+        } catch (NumberFormatException e) {
             this.avaliacao = 0.0;
         }
 

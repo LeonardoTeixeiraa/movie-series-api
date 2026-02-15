@@ -40,7 +40,7 @@ public class Serie {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Episodio> episodios = new ArrayList<>();
 
 
