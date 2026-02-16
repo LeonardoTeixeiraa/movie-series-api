@@ -1,5 +1,11 @@
 # 🎬 Movie Series API
-API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em banco de dados e consultar informações sobre séries e episódios.
+API REST desenvolvida com Spring Boot para integração com a API OMDb, permitindo a busca de séries, persistência dos dados em banco MySQL e consultas detalhadas sobre séries e episódios.
+
+O projeto utiliza:
+- MySQL containerizado com Docker
+- Migrations e versionamento de banco de dados com Flyway
+- Arquitetura em camadas (Controller, Service e Repository)
+- Boas práticas de configuração e gerenciamento de ambiente
 
 ## Tecnologias
 
@@ -18,6 +24,8 @@ API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em b
 - OMDb API
   
 - Docker
+
+- Flyway
 
 ## Funcionalidades:
 - Importar séries da OMDb API
@@ -40,15 +48,15 @@ API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em b
 
 > GET /series/lancamentos - retorna as séries mais atuais
 
-> GET /series/{id} busca uma série pelo ID
+> GET /series/{id} - busca uma série pelo ID
 
-> GET /series/{id}/temporadas/todas - retorna todas as temporadas de uma série
+> GET /series/{id}/temporadas/todas - retorna todas as temporadas cadastradas no banco de uma série
 
 > GET /series/categoria/{genero} - retorna séries por gênero
 
 > GET /series/{id}/temporada/top - retorna as melhores temporadas de uma série
 
->GET /series/{id}/temporadas/{numero} - retorna uma temporada específica
+> GET /series/{id}/temporadas/{numero} - retorna uma temporada específica
 
 ## Como executar o projeto:
 1. Clonar o repositório:  
@@ -78,6 +86,3 @@ API REST desenvolvida em Spring Boot para buscar séries na OMDb, armazenar em b
 6. A API estará disponível em:
    ```
    http://localhost:8080/series
-
-   
-   
