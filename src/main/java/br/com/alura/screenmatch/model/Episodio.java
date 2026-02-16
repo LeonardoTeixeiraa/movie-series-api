@@ -18,6 +18,9 @@ public class Episodio {
     private Integer numeroEpisodio;
     private Double avaliacao;
     private LocalDate dataLancamento;
+    @ManyToOne
+    @JoinColumn(name = "serie_id")
+    private Serie serie;
 
     public Long getId() {
         return id;
@@ -37,10 +40,6 @@ public class Episodio {
     public void setSerie(Serie serie) {
         this.serie = serie;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "serie_id")
-    private Serie serie;
 
     public Episodio(Integer numeroTemporada, OmdbEpisodioDTO episodioDTO) {
         this.temporada = numeroTemporada;

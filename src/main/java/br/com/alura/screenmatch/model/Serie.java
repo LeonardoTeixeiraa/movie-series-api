@@ -24,7 +24,7 @@ public class Serie {
     private String atores;
     private String poster;
     @Lob
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String sinopse;
 
     public List<Episodio> getEpisodios() {
