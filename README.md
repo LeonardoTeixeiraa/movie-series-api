@@ -64,7 +64,7 @@ O projeto utiliza:
    git clone https://github.com/seu-usuario/movie-series-api.git
 2. Navegue até o diretório do projeto:
    ```
-   cd movie-series-api
+   cd movie-series-api/
 3. Crie as variáveis de ambiente necessárias no sistema operacional:
    ```
    GEMINI_APIKEY= gere-sua-chave-do-gemini (necessária para fazer a tradução da sinopse das séries)
