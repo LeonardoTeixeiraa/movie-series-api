@@ -5,6 +5,7 @@ O projeto utiliza:
 - MySQL containerizado com Docker
 - Migrations e versionamento de banco de dados com Flyway
 - Arquitetura em camadas (Controller, Service e Repository)
+- Integração com IA (Gemini) para realizar traduções de sinopses
 - Boas práticas de configuração e gerenciamento de ambiente
 
 ## Tecnologias
