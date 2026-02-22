@@ -10,7 +10,7 @@ O projeto utiliza:
 
 ## Tecnologias
 
-- Java 17+
+- Java 21+
 
 - Spring Boot
 
