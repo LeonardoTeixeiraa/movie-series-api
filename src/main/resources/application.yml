@@ -11,5 +11,5 @@ spring:
     enabled: true
 
 omdb:
-  api-key: $(OMDB_APIKEY)
+  apiKey: ${OMDB_APIKEY}
 
