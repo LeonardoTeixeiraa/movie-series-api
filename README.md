@@ -62,7 +62,7 @@ O projeto utiliza:
 ## Como executar o projeto:
 1. Clonar o repositório:  
    ```
-   git clone https://github.com/seu-usuario/movie-series-api.git
+   git clone https://github.com/LeonardoTeixeiraa/movie-series-api.git
 2. Navegue até o diretório do projeto:
    ```
    cd movie-series-api/
