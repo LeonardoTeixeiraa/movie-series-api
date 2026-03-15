@@ -8,7 +8,6 @@ import br.com.alura.screenmatch.repository.FilmeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FilmeService {
@@ -50,5 +49,22 @@ public class FilmeService {
         return converteDados(repository.findTop5ByAvaliacaoDesc());
     }
 
+    public FilmeResponseDTO findFilmeById(Long id){
+        Filme filme = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Filme não encontrado"));
+
+        return new FilmeResponseDTO(
+                filme.getId(),
+                filme.getTitulo(),
+                filme.getAtores(),
+                filme.getAvaliacao(),
+                filme.getSinopse(),
+                filme.getPoster()
+        );
+    }
+
+    public List<FilmeResponseDTO> findFilmeByTituloContains(String titulo){
+        return converteDados(repository.findByTituloContainingIgnoreCase(titulo));
+    }
 
 }
