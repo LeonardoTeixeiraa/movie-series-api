@@ -46,5 +46,9 @@ public class FilmeService {
         return converteDados(repository.findAll());
     }
 
+    public List<FilmeResponseDTO> obterTop5filmes(){
+        return converteDados(repository.findTop5ByAvaliacaoDesc());
+    }
+
 
 }
