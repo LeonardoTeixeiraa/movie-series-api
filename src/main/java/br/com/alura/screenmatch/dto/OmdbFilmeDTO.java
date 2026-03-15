@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-@JsonIgnoreProperties
-@Service
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record OmdbFilmeDTO(@JsonAlias("Title") String titulo,
                            @JsonAlias("Actors") String atores,
-                           @JsonAlias("Rated") Double avaliacao,
+                           @JsonAlias("Imdb") Double avaliacao,
                            @JsonAlias("Plot") String sinopse,
-                           @JsonAlias("Poster") String poster) {
+                           @JsonAlias("Poster") String poster,
+                           @JsonAlias("Genre") String genero) {
 }
 

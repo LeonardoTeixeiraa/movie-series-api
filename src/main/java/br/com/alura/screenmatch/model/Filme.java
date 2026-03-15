@@ -1,6 +1,5 @@
 package br.com.alura.screenmatch.model;
 
-
 import br.com.alura.screenmatch.dto.OmdbFilmeDTO;
 import br.com.alura.screenmatch.service.ConsultaGemini;
 import jakarta.persistence.*;
@@ -24,6 +23,7 @@ public class Filme {
     private String atores;
     private Double avaliacao;
     private String poster;
+    private String genero;
 
     public Filme(OmdbFilmeDTO filmeDTO) {
         this.atores = filmeDTO.atores();
@@ -31,5 +31,6 @@ public class Filme {
         this.poster = filmeDTO.poster();;
         this.sinopse = ConsultaGemini.obterTraducao(filmeDTO.sinopse());
         this.titulo = filmeDTO.titulo();
+        this.genero = filmeDTO.genero();
     }
 }

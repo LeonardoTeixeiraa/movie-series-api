@@ -3,6 +3,7 @@ package br.com.alura.screenmatch.service;
 import br.com.alura.screenmatch.config.OmdbConfig;
 import br.com.alura.screenmatch.dto.FilmeResponseDTO;
 import br.com.alura.screenmatch.dto.OmdbFilmeDTO;
+import br.com.alura.screenmatch.model.Categoria;
 import br.com.alura.screenmatch.model.Filme;
 import br.com.alura.screenmatch.repository.FilmeRepository;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class FilmeService {
 
     public List<FilmeResponseDTO> converteDados(List<Filme> filmes){
         return repository.findAll().stream()
-                .map(f -> new FilmeResponseDTO(f.getId(), f.getTitulo(), f.getAtores(), f.getAvaliacao(), f.getSinopse(), f.getPoster()))
+                .map(f -> new FilmeResponseDTO(f.getId(), f.getTitulo(), f.getAtores(), f.getAvaliacao(),f.getGenero(),  f.getSinopse(), f.getPoster()))
                 .toList();
     }
 
@@ -46,7 +47,7 @@ public class FilmeService {
     }
 
     public List<FilmeResponseDTO> obterTop5filmes(){
-        return converteDados(repository.findTop5ByAvaliacaoDesc());
+        return converteDados(repository.findTop5ByOrderByAvaliacaoDesc());
     }
 
     public FilmeResponseDTO findFilmeById(Long id){
@@ -58,13 +59,19 @@ public class FilmeService {
                 filme.getTitulo(),
                 filme.getAtores(),
                 filme.getAvaliacao(),
+                filme.getGenero(),
                 filme.getSinopse(),
                 filme.getPoster()
         );
     }
 
     public List<FilmeResponseDTO> findFilmeByTituloContains(String titulo){
-        return converteDados(repository.findByTituloContainingIgnoreCase(titulo));
+        return converteDados(repository.findByTituloContainingIgnoreCase(titulo)
+                .orElseThrow(() -> new RuntimeException(STR."Não foram encontrados filmes com o titlo: \{titulo}")));
     }
 
+    public List<FilmeResponseDTO> findByGenero(String genero){
+        Categoria categoria = Categoria.fromPortugues(genero);
+        return converteDados(repository.findByGeneroIgnoreCase(genero).orElseThrow(() -> new RuntimeException(STR."Não há filmes cadastrados do gênero: \{genero}")));
+    }
 }
