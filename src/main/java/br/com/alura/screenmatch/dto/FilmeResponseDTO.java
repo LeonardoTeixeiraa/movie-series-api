@@ -5,6 +5,7 @@ public record FilmeResponseDTO(
         String titulo,
         String atores,
         Double avaliacao,
+        String genero,
         String sinopse,
         String poster
 ) {
