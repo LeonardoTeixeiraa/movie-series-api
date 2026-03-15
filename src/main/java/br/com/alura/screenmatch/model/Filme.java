@@ -1,6 +1,8 @@
 package br.com.alura.screenmatch.model;
 
 
+import br.com.alura.screenmatch.dto.OmdbFilmeDTO;
+import br.com.alura.screenmatch.service.ConsultaGemini;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,14 @@ public class Filme {
     @Column(columnDefinition = "TEXT")
     private String sinopse;
     private String atores;
-    private Double avaliação;
+    private Double avaliacao;
     private String poster;
 
+    public Filme(OmdbFilmeDTO filmeDTO) {
+        this.atores = filmeDTO.atores();
+        this.avaliacao = filmeDTO.avaliacao();
+        this.poster = filmeDTO.poster();;
+        this.sinopse = ConsultaGemini.obterTraducao(filmeDTO.sinopse());
+        this.titulo = filmeDTO.titulo();
+    }
 }
